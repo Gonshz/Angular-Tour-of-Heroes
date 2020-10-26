@@ -19,4 +19,33 @@ Initial commands to run the default angular app
 ng new angular-tour-of-heroes
 ng serve --open
 ```
+Other commands
+```
+ng generate component heroes  #Create new component named heroes
+```
 
+*Two way binding
+Add FormsModule, and use ngModel to use two way data binding.
+
+app.modules.ts 
+```javascript
+import { FormsModule } from '@angular/forms';
+
+[...]
+
+@NgModule({
+  imports: [
+    [...]
+    FormsModule
+  ],
+  [...]
+})
+```
+heroes.component.html
+```
+<div>
+  <label>name:
+    <input [(ngModel)]="hero.name" placeholder="name"/>
+  </label>
+</div>
+```
