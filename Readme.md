@@ -28,7 +28,7 @@ ng generate component heroes  #Create new component named heroes
 Add FormsModule, and use ngModel to use two way data binding.
 
 app.modules.ts 
-```javascript
+```ts
 import { FormsModule } from '@angular/forms';
 
 [...]
@@ -42,7 +42,7 @@ import { FormsModule } from '@angular/forms';
 })
 ```
 heroes.component.html
-```
+```html
 <div>
   <label>name:
     <input [(ngModel)]="hero.name" placeholder="name"/>
