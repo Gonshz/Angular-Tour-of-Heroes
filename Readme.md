@@ -24,7 +24,7 @@ Other commands
 ng generate component heroes  #Create new component named heroes
 ```
 
-*Two way binding
+* Two way binding
 Add FormsModule, and use ngModel to use two way data binding.
 
 app.modules.ts 
@@ -49,3 +49,15 @@ heroes.component.html
   </label>
 </div>
 ```
+
+* Undefined property when app starts
+heroes.component.ts
+```
+selectedHero: Hero;
+onSelect(hero: Hero): void {
+  this.selectedHero = hero;
+}
+```
+This selectedHero is not defined when the app starts. To not occur an error, add *ngIf.
+
+
