@@ -22,6 +22,7 @@ ng serve --open
 Other commands
 ```
 ng generate component heroes  #Create new component named heroes
+ng generate service hero # Create new service ts file
 ```
 
 ## Two way binding
@@ -79,6 +80,7 @@ heroes.component.html
 
 ## One way data binding
 To pass a data object named hero, receiver should do @Input().
+
 heroes.component.html
 ```html
 <app-hero-detail [hero]="selectedHero"></app-hero-detail>
@@ -89,4 +91,8 @@ export class HeroDetailComponent implements OnInit {
   @Input() hero: Hero;
 }
 ```
+
+## Service
+Angular's dependency injection system. 
+![service injection](https://miro.medium.com/max/702/1*8z1wpB1XWJKqwx3jLL_iCQ.png)
 
