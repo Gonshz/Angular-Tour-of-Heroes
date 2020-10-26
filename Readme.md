@@ -59,7 +59,7 @@ onSelect(hero: Hero): void {
   this.selectedHero = hero;
 }
 ```
-This selectedHero is not defined when the app starts. To not occur an error, add *ngIf.
+This selectedHero is not defined when the app starts. To avoid an error, add *ngIf.
 The ngIf removes the hero detail from the DOM.
 
 heroes.component.html
@@ -77,4 +77,16 @@ heroes.component.html
 </div>
 ```
 
+## One way data binding
+To pass a data object named hero, receiver should do @Input().
+heroes.component.html
+```html
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+```
+hero-detail.component.ts
+```ts
+export class HeroDetailComponent implements OnInit {
+  @Input() hero: Hero;
+}
+```
 
