@@ -53,7 +53,7 @@ heroes.component.html
 ## Undefined property when app starts
 
 heroes.component.ts
-```
+```ts
 selectedHero: Hero;
 onSelect(hero: Hero): void {
   this.selectedHero = hero;
@@ -63,7 +63,7 @@ This selectedHero is not defined when the app starts. To not occur an error, add
 The ngIf removes the hero detail from the DOM.
 
 heroes.component.html
-```
+```html
 <div *ngIf="selectedHero">
 
   <h2>{{selectedHero.name | uppercase}} Details</h2>
