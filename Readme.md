@@ -94,5 +94,31 @@ export class HeroDetailComponent implements OnInit {
 
 ## Service
 Angular's dependency injection system. 
+
 ![service injection](https://miro.medium.com/max/702/1*8z1wpB1XWJKqwx3jLL_iCQ.png)
+
+hero.service.ts
+```ts
+import { Injectable } from '@angular/core';
+
+import { Hero } from './hero';
+import { HEROES } from './mock-heroes';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class HeroService {
+
+  constructor() { }
+
+  getHeroes(): Hero[] {
+    return HEROES;
+  }
+}
+```
+Guide of [dependency injection](https://angular.io/guide/dependency-injection) and [Providing](https://angular.io/guide/providers).
+
+
+
+
 
