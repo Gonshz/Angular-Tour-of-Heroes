@@ -232,7 +232,7 @@ export class HeroService {
 
   constructor(private messageService: MessageService) { }
 
-  getHeroes(): Observable<Hero[]> {
+  getHeroes(): Observable<Hero[]> { // RxJS method Observable, and it has .subscribe method
     // TODO: send the message _after_ fetching the heroes
     this.messageService.add('HeroService: fetched heroes');
     return of(HEROES);
@@ -243,6 +243,10 @@ export class HeroService {
 ## Routing
 > In Angular, the best practice is to load and configure the router in a separate, top-level module that is dedicated to routing and imported by the root AppModule.
 > By convention, the module class name is AppRoutingModule and it belongs in the app-routing.module.ts in the src/app folder.
+
+```
+ng generate module app-routing --flat --module=app #Generate app-routing.module.ts
+```
 
 app-routing.modele.ts
 ```ts
@@ -279,6 +283,52 @@ app.component.html
 <!-- router-outlet displays component when the url matches to component's one. -->
 <router-outlet></router-outlet>
 <app-messages></app-messages>
+```
+
+hero.service.ts
+```ts
+  getHero(id: number): Observable<Hero> { // RxJS method Observable, and it has .subscribe method
+    // TODO: send the message _after_ fetching the hero
+    this.messageService.add(`HeroService: fetched hero id=${id}`); // Pass id as a param to hero-detail.component.ts
+    return of(HEROES.find(hero => hero.id === id));
+  }
+  ```
+  hero-detail.component.ts
+  ```ts
+  import { Component, OnInit, Input } from '@angular/core';
+import { Hero } from '../hero';
+import { ActivatedRoute } from '@angular/router'; //Hold info of the route of this hero-detail instance
+import { Location } from '@angular/common';
+
+import { HeroService } from '../hero.service';
+
+@Component({
+  selector: 'app-hero-detail',
+  templateUrl: './hero-detail.component.html',
+  styleUrls: ['./hero-detail.component.scss']
+})
+export class HeroDetailComponent implements OnInit {
+  @Input() hero: Hero;
+
+  constructor(
+    private route: ActivatedRoute,
+    private heroService: HeroService,
+    private location: Location
+  ) {}
+
+  ngOnInit(): void {
+    this.getHero();
+  }
+
+  getHero(): void {
+    //route.snapshot is a static image of the route info
+    //paramMap is a dictionary of the route param values extracted from url
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.heroService.getHero(id)
+      .subscribe(hero => this.hero = hero);
+  }
+
+}
 ```
 
 
