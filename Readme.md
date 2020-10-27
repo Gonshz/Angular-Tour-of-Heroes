@@ -236,5 +236,9 @@ export class HeroService {
 }
 ```
 
+## Routing
+> In Angular, the best practice is to load and configure the router in a separate, top-level module that is dedicated to routing and imported by the root AppModule.
+
+By convention, the module class name is AppRoutingModule and it belongs in the app-routing.module.ts in the src/app folder.
 
 
