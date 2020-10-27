@@ -22,7 +22,11 @@ ng serve --open
 Other commands
 ```
 ng generate component heroes  #Create new component named heroes
-ng generate service hero # Create new service ts file
+ng generate service hero #Create new service ts file
+
+ng generate module app-routing --flat --module=app #Generate app-routing.module.ts
+#--flat puts the file in src/app instead of its own folder.
+#--module=app tells the CLI to register it in the imports array of the AppModule. That means app.modules.ts automatically imports AppRoutingModule and you can use <router-outlet></router-outlet> or other things.
 ```
 
 ## Two way binding
@@ -238,7 +242,43 @@ export class HeroService {
 
 ## Routing
 > In Angular, the best practice is to load and configure the router in a separate, top-level module that is dedicated to routing and imported by the root AppModule.
+> By convention, the module class name is AppRoutingModule and it belongs in the app-routing.module.ts in the src/app folder.
 
-By convention, the module class name is AppRoutingModule and it belongs in the app-routing.module.ts in the src/app folder.
+app-routing.modele.ts
+```ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HeroesComponent } from './heroes/heroes.component'; //Somewhere to go once you configure the routes.
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+
+// Attach /heroes path the component HeroesComponent
+const routes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'detail/:id', component: HeroDetailComponent },
+  { path: 'heroes', component: HeroesComponent }
+];
+
+// Initialize the router nad start listening browser url
+@NgModule({
+  imports: [RouterModule.forRoot(routes)], //forRoot means that the router is being at the app root level
+  exports: [RouterModule] // It will be available throughout the app
+})
+export class AppRoutingModule { }
+
+//ng generate command, especially --modelu==app flag, automatically adds AppRoutingModule to app.modules.ts file.
+```
+app.component.html
+```html
+<h1>{{title}}</h1>
+<nav>
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/heroes">Heroes</a>
+</nav>
+<!-- router-outlet displays component when the url matches to component's one. -->
+<router-outlet></router-outlet>
+<app-messages></app-messages>
+```
 
 
