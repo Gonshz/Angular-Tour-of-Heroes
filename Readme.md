@@ -7,7 +7,7 @@ Angular demonstration [Tour of Heroes](https://angular.io/tutorial)
 
 The completion codes and app demonstration can be seen with [Stackblitz](https://stackblitz.com/angular/pyrgjeodnnl?file=src%2Fapp%2Fhero.service.ts)
 
-# Start
+# Key Concepts
 
 ### Setup
 Install command
