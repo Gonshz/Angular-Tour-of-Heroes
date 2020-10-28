@@ -332,7 +332,7 @@ export class HeroDetailComponent implements OnInit {
 ```
 
 
-##Server
+## Server
 HttpClient is Angular's mechanism for communicating with a remote server over HTTP.
 
 app.module.ts
